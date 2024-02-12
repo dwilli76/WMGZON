@@ -1,0 +1,44 @@
+{% extends "layout.html" %} {% block title %}Manage Products - Technology{%
+endblock %} {% block content %}
+<a href="/categories/technology/manage/">Return to product list</a>
+<form method="POST" enctype="multipart/form-data">
+  <label>Name:</label>
+  <input type="text" name="name" required /><br />
+  <label>Brand:</label>
+  <input type="text" name="brand" required /><br />
+  <label>Original Price:</label>
+  <input
+    type="number"
+    name="original_price"
+    min="1"
+    step="any"
+    required
+  /><br />
+  <label>Current Price:</label>
+  <input type="number" name="current_price" min="0" step="any" required /><br />
+  <label>Product Image(s):</label><br />
+  <input type="file" name="images" accept=".png" /><br />
+  <label>Stock:</label><br />
+  <input type="number" name="stock" min="0" required /><br />
+
+  <label>Subcategory:</label>
+  <select name="subcategory" required>
+    <option value="camera_&_photo">Camera & Photo</option>
+    <option value="tv_&_home_cinema">TV & Home Cinema</option>
+    <option value="laptops">Laptops</option>
+    <option value="phones">Phones</option>
+    <option value="audio_&_hifi">Audio & HiFi</option>
+    <option value="accessories">Accessories</option></select
+  ><br />
+  <label>Preview:</label>
+  <textarea name="preview" required></textarea><br />
+  <label>Description:</label>
+  <textarea name="description" required></textarea><br />
+  <label>Specs:</label>
+  <textarea name="specs" required></textarea><br />
+  <label>Options:</label>
+  <textarea name="options" required></textarea><br />
+  <input type="Submit" value="Add Product" /><br />
+</form>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "layout.html" %} {% block title %}Login{% endblock %} {% block navbar
+%}{% endblock %} {% block content %}
+<div class="login-frame">
+  <div class="login-logo">
+    <a href="/"><img src="/static/assets/Logo.png" /></a>
+    <h1>Login</h1>
+  </div>
+
+  <div class="login-form">
+    <form method="POST" action="/login">
+      <label for="email">Email/Phone Number</label><br />
+      <input type="text" id="email" name="email" /><br />
+      <label for="pword">Password</label><br />
+      <input type="password" id="pword" name="pword" /><br />
+      <input type="checkbox" id="remember" name="remember" value="remember" />
+      <span class="checkmark"></span>
+      <label for="remember"> Keep me logged in</label><br />
+      <input type="submit" value="Login" />
+    </form>
+    <a href="/forgot-password">Forgot Password</a><br /><br />
+    <a href="/signup">Don't have an account? Click here to sign up</a>
+  </div>
+</div>
+{% endblock %}

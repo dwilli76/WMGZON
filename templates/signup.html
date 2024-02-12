@@ -1,0 +1,30 @@
+{% extends "layout.html" %} {% block title %}Sign Up{% endblock %} {% block
+navbar %}{% endblock %} {% block content %}
+<div class="signup-frame">
+  <div class="signup-logo">
+    <a href="/"><img src="/static/assets/Logo.png" /></a>
+    <h1>Sign Up</h1>
+  </div>
+
+  <div class="signup-form">
+    <form method="POST" action="/signup">
+      <label for="forename">First Name: </label>
+      <input type="text" id="forename" name="forename" />
+      <label for="surname">Last Name: </label>
+      <input type="text" id="surname" name="surname" /><br />
+
+      <label for="email">Email: </label>
+      <input type="text" id="email" name="email" /><br />
+
+      <label for="phone">Phone: </label>
+      <input type="tel" id="phone" name="phone" pattern="[0-9]{11}" /><br />
+
+      <label for="pword">Password: </label>
+      <input type="password" id="pword" name="pword" /><br />
+
+      <input type="submit" value="Sign Up" />
+    </form>
+    <a href="/login">Already have an account? Click here to login</a>
+  </div>
+</div>
+{% endblock %}

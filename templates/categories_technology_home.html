@@ -1,0 +1,90 @@
+{% extends "layout.html" %} {% block title %}Technolody{% endblock %} {% block
+content %}
+<div class="technology-navbar">
+  <a href="/categories/technology/subcategory/camera_&_photo">Camera & Photo</a>
+  <a href="/categories/technology/subcategory/tv_&_home_cinema"
+    >TV & Home Cinema</a
+  >
+  <a href="/categories/technology/subcategory/laptops">Laptops</a>
+  <a href="/categories/technology/subcategory/phones">Phones</a>
+  <a href="/categories/technology/subcategory/audio_&_hifi">Audio & HiFi</a>
+  <a href="/categories/technology/subcategory/accessories">Accessories</a>
+  <a href="/categories/technology/subcategory/">More</a>
+</div>
+
+<div class="technology-home-content">
+  <img src="/static/assets/tech_carousel_placeholder.png" style="width: 100%" />
+
+  <div class="technology-deals-frame">
+    <h1>Popular Right Now in Phones...</h1>
+
+    {% for product in data %} {% if product[6] == "phones" %}
+    <div class="technology-deals-tile">
+      <img src="/static/assets/product_images/{{product[11]}}" />
+      <h2>{{product[2]}}</h2>
+      <h1>{{product[1]}}</h1>
+      <h4>£{{ "%0.2f" | format(product[3] | float) }}</h4>
+      <h3>£{{ "%0.2f" | format(product[4] | float) }}</h3>
+      <a href="/categories/technology/product/{{product[0]}}">Explore >></a>
+    </div>
+    {% endif %} {% endfor %}
+  </div>
+  <div class="technology-deals-frame-more">
+    <a href="/categories/technology/subcategory/phones/">></a>
+  </div>
+
+  <div class="technology-deals-frame">
+    <h1>Laptop Deals...</h1>
+
+    {% for product in data %} {% if product[6] == "laptops" %}
+    <div class="technology-deals-tile">
+      <img src="/static/assets/product_images/{{product[11]}}" />
+      <h2>{{product[2]}}</h2>
+      <h1>{{product[1]}}</h1>
+      <h4>£{{ "%0.2f" | format(product[3] | float) }}</h4>
+      <h3>£{{ "%0.2f" | format(product[4] | float) }}</h3>
+      <a href="/categories/technology/product/{{product[0]}}">Explore >></a>
+    </div>
+    {% endif %} {% endfor %}
+  </div>
+  <div class="technology-deals-frame-more">
+    <a href="/categories/technology/subcategory/laptops/">></a>
+  </div>
+
+  <div class="technology-deals-frame">
+    <h1>New in Cameras...</h1>
+
+    {% for product in data %} {% if product[6] == "camera_&_photo" %}
+    <div class="technology-deals-tile">
+      <img src="/static/assets/product_images/{{product[11]}}" />
+      <h2>{{product[2]}}</h2>
+      <h1>{{product[1]}}</h1>
+      <h4>£{{ "%0.2f" | format(product[3] | float) }}</h4>
+      <h3>£{{ "%0.2f" | format(product[4] | float) }}</h3>
+      <a href="/categories/technology/product/{{product[0]}}">Explore >></a>
+    </div>
+    {% endif %} {% endfor %}
+  </div>
+  <div class="technology-deals-frame-more">
+    <a href="/categories/technology/subcategory/camera_&_photo/">></a>
+  </div>
+
+  <div class="technology-deals-frame">
+    <h1>Our best TVs...</h1>
+
+    {% for product in data %} {% if product[6] == "tv_&_home_cinema" %}
+    <div class="technology-deals-tile">
+      <img src="/static/assets/product_images/{{product[11]}}" />
+      <h2>{{product[2]}}</h2>
+      <h1>{{product[1]}}</h1>
+      <h4>£{{ "%0.2f" | format(product[3] | float) }}</h4>
+      <h3>£{{ "%0.2f" | format(product[4] | float) }}</h3>
+      <a href="/categories/technology/product/{{product[0]}}">Explore >></a>
+    </div>
+    {% endif %} {% endfor %}
+  </div>
+  <div class="technology-deals-frame-more">
+    <a href="/categories/technology/subcategory/tv_&_home_cinema/">></a>
+  </div>
+</div>
+{% endblock %}

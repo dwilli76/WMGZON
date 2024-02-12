@@ -1,0 +1,52 @@
+{% extends "layout.html" %} {% block title %}Products - Technology{% endblock %} {% block
+content %}
+<div class="technology-navbar">
+  <a href="/categories/technology/subcategory/camera_&_photo">Camera & Photo</a>
+  <a href="/categories/technology/subcategory/tv_&_home_cinema"
+    >TV & Home Cinema</a
+  >
+  <a href="/categories/technology/subcategory/laptops">Laptops</a>
+  <a href="/categories/technology/subcategory/phones">Phones</a>
+  <a href="/categories/technology/subcategory/audio_&_hifi">Audio & HiFi</a>
+  <a href="/categories/technology/subcategory/accessories">Accessories</a>
+  <a href="/categories/technology/subcategory/">More</a>
+</div>
+
+<div class="technology-subcategory-sidebar">
+    <form method="POST">
+        <h1>Sort By</h1>
+        <select name="sort" id="sort">
+            <option value="popular">Popular</option>
+            <option value='attribute="current_price", reverse=False'>Price Low to High</option>
+            <option value='attribute="current_price", reverse=True'>Price High to Low</option>
+           
+        </select>
+        <h1>Filters</h1>
+        <input type="submit" value="Update">
+    </form>
+  
+    
+</div>
+
+<div class="technology-subcategory-content">
+    
+    {% for product in data%}
+  <div class="technology-product-tile">
+    <img src="/static/assets/product_images/{{product[11]}}" />
+    <h2>{{product[2]}}</h2>
+    <h1>{{product[1]}}</h1>
+    <p><ul>
+        {% set preview = product[7].split('\n') %}
+        {% for item in preview %}
+        <li>{{item}}</li>
+        {% endfor %}
+      </ul></p>
+    <h4>£{{ "%0.2f" | format(product[3] | float) }}</h4>
+    <h3>£{{ "%0.2f" | format(product[4] | float) }}</h3>
+    <a href="/categories/technology/product/{{product[0]}}">Explore >></a>
+  </div>
+
+  {% endfor %}
+</div>
+
+{% endblock %}

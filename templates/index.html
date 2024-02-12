@@ -1,0 +1,58 @@
+{% extends "layout.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<div class="content">
+  <div class="bg-shape">
+    <div class="welcome-back"></div>
+
+    <div class="index-carousel">
+      <img src="/static/assets/index_carousel_placeholder.png" />
+    </div>
+
+    <div class="category-tiles">
+      <div class="tile">
+        <h3>Groceries</h3>
+        <img src="/static/assets/groceries_thumbnail.png" />
+        <p>From easy snacks to home cooked meals, we have it all...</p>
+        <a href="/categories/groceries">Shop Now</a>
+      </div>
+
+      <div class="tile">
+        <h3>Technology</h3>
+        <img src="/static/assets/technology_thumbnail.png" />
+        <p>All the latest gadgets from gaming to music to productivity...</p>
+        <a href="/categories/technology">Shop Now</a>
+      </div>
+
+      <div class="tile">
+        <h3>Automotive</h3>
+        <img src="/static/assets/automotive_thumbnail.png" />
+        <p>Rev your engines, we’ve got all the parts to turbo your motor...</p>
+        <a href="/categories/automotive">Shop Now</a>
+      </div>
+
+      <div class="tile">
+        <h3>Clothing</h3>
+        <img src="/static/assets/clothing_thumbnail.png" />
+        <p>Find the latest fashion or craft your own retro look...</p>
+        <a href="/categories/clothing">Shop Now</a>
+      </div>
+
+      <div class="tile">
+        <h3>Books</h3>
+        <img src="/static/assets/books_thumbnail.png" />
+        <p>
+          Lose yourself in an adventure or learn the secrets of the universe...
+        </p>
+        <a href="/categories/books">Shop Now</a>
+      </div>
+
+      <div class="tile">
+        <h3>Sports & Outdoors</h3>
+        <img src="/static/assets/sports_thumbnail.png" />
+        <p>Better warm up, we’ve got all the gear you need...</p>
+        <a href="/categories/sports">Shop Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

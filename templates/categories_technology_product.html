@@ -1,0 +1,136 @@
+{% extends "layout.html" %} {% block title %}{{data[1]}} - Technology{%
+endblock %} {% block content %}
+
+<div class="product-container">
+  <form id="wishlist"></form>
+
+  <form>
+  <div class="product-form">
+    <div class="product-images">
+      <img
+        src="/static/assets/product_images/{{data[11]}}"
+      />
+    </div>
+
+    <div class="product-name">
+      <h2>{{data[2]}}</h2>
+
+      <h1>{{data[1]}}</h1>
+    </div>
+
+    <div class="product-price">
+      {% if data[3] == data[4] %}
+      <h3>£{{ "%0.2f" | format(data[4] | float) }}</h3>
+      {% else %}
+      <h4>£{{ "%0.2f" | format(data[3] | float) }}</h4>
+      <h3>£{{ "%0.2f" | format(data[4] | float) }}</h3>
+      {% set saving = data[3]-data[4] %}
+      <h5>Save £{{saving|round(0, 'floor')|int}}</h5>
+      {% endif %} {% if data[5]>0 %}
+      <h6 style="color: rgb(0, 110, 0)">In Stock</h6>
+      {% else %}
+      <h6 style="color:rgb(94, 0, 0)">Out of Stock</h6>
+      {% endif %}
+    </div>
+
+    <div class="product-preview">
+      <h2>
+        <ul>
+          {% set preview = data[7].split('\n') %}
+          {% for item in preview %}
+          <li>{{item}}</li>
+          {% endfor %}
+        </ul></h2>
+    </div>
+
+    <div class="product-buttons">
+      <input type="submit" value="Add to Basket">
+      <button form="wishlist" type="submit">Add to Wishlist</button>
+      <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+      <script async src="https://static.addtoany.com/menu/page.js"></script>
+    </div>
+
+    {% if data[10] %}{% set options = data[10].split('\n') %}
+    <div class="product-options">
+      <form>
+      {% set currentOption = namespace(value="") %}
+
+      {% for item in options %} {% set item = item|trim %} {% if item|last == ":" %}
+      {% set currentOption.value = item %}
+
+      <h6>{{item[:-1]}}</h6>
+      
+      {% else %}
+      <div class="product-options-item">
+        <li>
+          <input type="radio" id="{{item}}" name="{{currentOption.value}}" required/>
+          <label for="{{item}}">{{item}}</label>
+        </li>
+        
+      </div>
+      {% endif %} {% endfor %}
+      </form>
+    </div>
+    {% endif %}
+  </div>
+  </form>  
+
+  <div class="product-description">
+    <h1>Description</h1>
+    <p>{{data[8][:800]}}<span id="dots">...</span><span id="more">{{data[8][800:]}}</span></span></p>
+    <button onclick="myFunction()" id="myBtn">Read More >></button>
+  </div>
+
+  <script>
+    function myFunction() {
+      var dots = document.getElementById('dots');
+      var moreText = document.getElementById('more');
+      var btnText = document.getElementById('myBtn');
+
+      if (dots.style.display === 'none') {
+        dots.style.display = 'inline';
+        btnText.innerHTML = 'Read More >>';
+        moreText.style.display = 'none';
+      } else {
+        dots.style.display = 'none';
+        btnText.innerHTML = 'Read Less <<';
+        moreText.style.display = 'inline';
+      }
+    }
+  </script>
+
+  {% if data[9] %}{% set specs = data[9].split('\n') %}
+  <div class="product-specs">
+    <h1>Tech Specs</h1>
+      <div class="product-specs-content">
+        {% for item in specs %}
+      {% set item = item|trim %}
+        {% if item|last == ":" %}
+        <div class="product-specs-header">{{item[:-1]}}</div>
+        {% else %}
+        <div class="product-specs-data">{{item}}</div>
+        {% endif %}
+
+      {% endfor %}
+      </div>
+      
+
+  </div>
+  {% endif %}
+
+  <div class="product-recommended">
+    <h1>Recommended Products</h1>
+    {% for product in data %}
+    <div class="technology-deals-tile">
+      <img src="/static/assets/groceries_thumbnail.png" />
+      <p>{{product[1]}}</p>
+      <p>{{product[2]}}</p>
+      <a href="/categories/technology/product/{{product[0]}}">Expore >></a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<br />
+
+{% endblock %}
