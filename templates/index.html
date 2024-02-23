@@ -1,9 +1,48 @@
 {% extends "layout.html" %} {% block title %}Home{% endblock %} {% block content
 %}
 <div class="content">
+  {% if current_user.is_authenticated %} {% if current_user.type == "user" %}
+  <div class="welcome-back">
+    <h1>Welcome Back {{current_user.forename}}</h1>
+    <a href="/profile">Profile</a>
+    <a href="/profile/wishlist">Wishlist</a>
+    <a href="/profile/deals">Deals</a>
+    <a href="/profile/recommended">Recommended</a>
+    <a href="/profile/orders">Orders</a>
+    <div class="welcome-back-pane">
+      <div class="welcome-back-product-section">
+        <h2>Recently Viewed</h2>
+        <img src="/static/assets/demo_product_1.png" />
+        <img src="/static/assets/demo_product_2.png" />
+        <img src="/static/assets/demo_product_3.png" />
+        <img src="/static/assets/demo_product_4.png" />
+      </div>
+      <div class="welcome-back-product-section">
+        <h2>From your wish list</h2>
+        <img src="/static/assets/demo_product_1.png" />
+        <img src="/static/assets/demo_product_2.png" />
+        <img src="/static/assets/demo_product_3.png" />
+        <img src="/static/assets/demo_product_4.png" />
+      </div>
+      <div class="welcome-back-product-section">
+        <h2>We think you'll like</h2>
+        <img src="/static/assets/demo_product_1.png" />
+        <img src="/static/assets/demo_product_2.png" />
+        <img src="/static/assets/demo_product_3.png" />
+        <img src="/static/assets/demo_product_4.png" />
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="welcome-back" style="height: 100px">
+    <h1>Welcome Back {{current_user.forename}}</h1>
+    <a href="/profile">Profile</a>
+    <a href="/categories/technology/add">Add Product</a>
+    <a href="/categories/technology/manage">Manage Products</a>
+    <a href="/categories/technology/stats">Stats</a>
+  </div>
+  {% endif %} {% endif %}
   <div class="bg-shape">
-    <div class="welcome-back"></div>
-
     <div class="index-carousel">
       <img src="/static/assets/index_carousel_placeholder.png" />
     </div>

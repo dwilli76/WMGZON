@@ -65,8 +65,21 @@
         </form>
 
         <div class="nav-links">
+          {% if current_user.is_authenticated %}
+          <a href="/profile"><img src="/static/assets/navbar_profile.png" /></a>
+          <a href="/logout"><img src="/static/assets/navbar_logout.png" /></a>
+          {% if current_user.type == "admin" %}
+          <a href="/categories/technology/manage"><img src="/static/assets/navbar_manage.png" /></a>
+          {% else %}
+          <a href="/basket"><img src="/static/assets/navbar_basket.png" /></a>
+          {% endif %}
+          {% else %}
           <a href="/login"><img src="/static/assets/navbar_login.png" /></a>
           <a href="/basket"><img src="/static/assets/navbar_basket.png" /></a>
+          {% endif %}
+          
+          
+          
         </div>
       </div>
       {% endblock %} {% with messages = get_flashed_messages() %} {% if messages

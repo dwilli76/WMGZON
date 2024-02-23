@@ -41,8 +41,13 @@ content %}
         <li>{{item}}</li>
         {% endfor %}
       </ul></p>
-    <h4>£{{ "%0.2f" | format(product[3] | float) }}</h4>
-    <h3>£{{ "%0.2f" | format(product[4] | float) }}</h3>
+    {% if product[3] == product[4] %}
+      <h4>-</h4>
+      <h3>£{{ "%0.2f" | format(product[4] | float) }}</h3>
+    {% else %}
+      <h4>£{{ "%0.2f" | format(product[3] | float) }}</h4>
+      <h3>£{{ "%0.2f" | format(product[4] | float) }}</h3>
+    {% endif %}
     <a href="/categories/technology/product/{{product[0]}}">Explore >></a>
   </div>
 

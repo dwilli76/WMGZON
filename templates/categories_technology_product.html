@@ -4,7 +4,8 @@ endblock %} {% block content %}
 <div class="product-container">
   <form id="wishlist"></form>
 
-  <form>
+  <form id="basket" method="POST" action="/basket" enctype="multipart/form-data">
+    <input form="basket" type="hidden" name="productID" value="{{data[0]}}">
   <div class="product-form">
     <div class="product-images">
       <img
@@ -44,8 +45,14 @@ endblock %} {% block content %}
     </div>
 
     <div class="product-buttons">
-      <input type="submit" value="Add to Basket">
-      <button form="wishlist" type="submit">Add to Wishlist</button>
+      {% if current_user.type == "admin" %}
+        <a href="/categories/technology/manage/{{data[0]}}">Manage Product</a>
+      {% else %}
+        
+        <input form="basket" type="submit" value="Add to Basket" {% if data[5] <= 0 %} disabled {% endif %}><br/>
+      {% endif %}
+      
+      <button form="wishlist" type="submit">Add to Wishlist</button><br/>
       <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
       <script async src="https://static.addtoany.com/menu/page.js"></script>
     </div>
@@ -120,13 +127,17 @@ endblock %} {% block content %}
 
   <div class="product-recommended">
     <h1>Recommended Products</h1>
-    {% for product in data %}
+    {% for product in recommended %}
+    {% if product[0] != data[0] %}
     <div class="technology-deals-tile">
-      <img src="/static/assets/groceries_thumbnail.png" />
-      <p>{{product[1]}}</p>
-      <p>{{product[2]}}</p>
-      <a href="/categories/technology/product/{{product[0]}}">Expore >></a>
+      <img src="/static/assets/product_images/{{product[11]}}" />
+      <h2>{{product[2]}}</h2>
+      <h1>{{product[1]}}</h1>
+      <h4>£{{ "%0.2f" | format(product[3] | float) }}</h4>
+      <h3>£{{ "%0.2f" | format(product[4] | float) }}</h3>
+      <a href="/categories/technology/product/{{product[0]}}">Explore >></a>
     </div>
+    {% endif %}
     {% endfor %}
   </div>
 </div>

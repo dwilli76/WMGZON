@@ -1,0 +1,42 @@
+{% extends "layout.html" %} {% block title %}404 Page Not Found{% endblock %} {%
+block content %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div class="stats-container">
+  <h1>Stats</h1>
+  <a href="/categories/technology/stats">Return to all stats</a>
+  <h2>Stock levels of subcategory: {{subcategory}}</h2>
+  <div class="stats-chart">
+    <canvas id="graph"></canvas>
+  </div>
+</div>
+
+<script>
+  const ctx = document.getElementById('graph');
+
+  const graphLabels = {{graphLabels | tojson}};
+  const graphContent = {{graphContent | tojson}};
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: graphLabels,
+      datasets: [
+        {
+          label: '# of stock',
+          data: graphContent,
+          borderWidth: 1,
+          borderColor: '#ff9900',
+          backgroundColor: '#ffc369',
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+
+        },
+      },
+    },
+  });
+</script>
+{% endblock %}

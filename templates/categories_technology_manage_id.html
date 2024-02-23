@@ -1,71 +1,75 @@
 {% extends "layout.html" %} {% block title %}Manage Products - Technology{%
 endblock %} {% block content %}
-<a href="/categories/technology/manage/">Return to product list</a>
-<form method="POST" enctype="multipart/form-data">
-  <label>Enter Name:</label>
-  <input
-    type="text"
-    name="name"
-    value="{{ request.form['name'] or data['name'] }}"
-    required
-  /><br />
-  <label>Enter Brand:</label>
-  <input
-    type="text"
-    name="brand"
-    value="{{ request.form['brand'] or data['brand'] }}"
-    required
-  /><br />
-  <label>Enter Original Price:</label>
-  <input
-    type="number"
-    name="original_price"
-    min="1"
-    step="any"
-    value="{{ request.form['original_price'] or data['original_price'] }}"
-    required
-  /><br />
-  <label>Enter Current Price:</label>
-  <input
-    type="number"
-    name="current_price"
-    min="1"
-    step="any"
-    value="{{ request.form['current_price'] or data['current_price'] }}"
-    required
-  /><br />
-  <label>Product Image(s):</label><br />
-  <input type="file" name="images" accept=".png" /><br />
-  <label>Stock:</label><br />
-  <input
-    type="number"
-    name="stock"
-    min="0"
-    value="{{ request.form['stock'] or data['stock'] }}"
-    required
-  /><br />
-  <label>Enter Subcategory:</label>
-  <select
-    name="subcategory"
-    value="{{ request.form['subcategory'] or data['subcategory'] }}"
-    required
-  >
-    <option value="camera_&_photo" {% if data['subcategory']=="Camera & Photo" %} selected="selected" {% endif %}>Camera & Photo</option>
-    <option value="tv_&_home_cinema" {% if data['subcategory']=="TV & Home Cinema" %} selected="selected" {% endif %}>TV & Home Cinema</option>
-    <option value="laptops" {% if data['subcategory']=="Laptops" %} selected="selected" {% endif %}>Laptops</option>
-    <option value="phones" {% if data['subcategory']=="Phones" %} selected="selected" {% endif %}>Phones</option>
-    <option value="audio_&_hifi" {% if data['subcategory']=="Audio & HiFi" %} selected="selected" {% endif %}>Audio & HiFi</option>
-    <option value="accessories" {% if data['subcategory']=="Accessories" %} selected="selected" {% endif %}>Accessories</option></select
-  ><br />
-  <label>Preview:</label>
-  <textarea name="preview" required>{{ request.form['preview'] or data['preview'] }}</textarea><br />
-  <label>Description:</label>
-  <textarea name="description" required>{{ request.form['description'] or data['description'] }}</textarea><br />
-  <label>Specs:</label>
-  <textarea name="specs" required>{{ request.form['specs'] or data['specs'] }}</textarea><br />
-  <label>Options:</label>
-  <textarea name="options" required>{{ request.form['options'] or data['options'] }}</textarea><br />
-  <input type="submit" value="Update Product" /><br />
-</form>
 
+<div class="add-product-container">
+  <a href="/categories/technology/manage/">Return to product list</a><br /><br /><br />
+  <form method="POST" enctype="multipart/form-data">
+    <label>Enter Name:</label>
+    <input
+      type="text"
+      name="name"
+      value="{{ request.form['name'] or data['name'] }}"
+      required
+    />
+    <label>Enter Brand:</label>
+    <input
+      type="text"
+      name="brand"
+      value="{{ request.form['brand'] or data['brand'] }}"
+      required
+    /><br />
+    <label>Enter Original Price:</label>
+    <input
+      type="number"
+      name="original_price"
+      min="1"
+      step="any"
+      value="{{ request.form['original_price'] or data['original_price'] }}"
+      required
+    />
+    <label>Enter Current Price:</label>
+    <input
+      type="number"
+      name="current_price"
+      min="1"
+      step="any"
+      value="{{ request.form['current_price'] or data['current_price'] }}"
+      required
+    /><br />
+    <label>Product Image(s):</label>
+    <input type="file" name="images" accept=".png" />
+    
+    <label>Enter Subcategory:</label>
+    <select
+      name="subcategory"
+      value="{{ request.form['subcategory'] or data['subcategory'] }}"
+      required
+    >
+      <option value="camera_&_photo" {% if data['subcategory']=="Camera & Photo" %} selected="selected" {% endif %}>Camera & Photo</option>
+      <option value="tv_&_home_cinema" {% if data['subcategory']=="TV & Home Cinema" %} selected="selected" {% endif %}>TV & Home Cinema</option>
+      <option value="laptops" {% if data['subcategory']=="Laptops" %} selected="selected" {% endif %}>Laptops</option>
+      <option value="phones" {% if data['subcategory']=="Phones" %} selected="selected" {% endif %}>Phones</option>
+      <option value="audio_&_hifi" {% if data['subcategory']=="Audio & HiFi" %} selected="selected" {% endif %}>Audio & HiFi</option>
+      <option value="accessories" {% if data['subcategory']=="Accessories" %} selected="selected" {% endif %}>Accessories</option></select
+    ><br />
+    <label>Preview:</label>
+    <textarea name="preview" rows="10" cols="50" required>{{ request.form['preview'] or data['preview'] }}</textarea>
+    <label>Description:</label>
+    <textarea name="description" rows="10" cols="50" required>{{ request.form['description'] or data['description'] }}</textarea><br />
+    <label>Specs:</label>
+    <textarea name="specs" rows="10" cols="50" required>{{ request.form['specs'] or data['specs'] }}</textarea>
+    <label>Options:</label>
+    <textarea name="options" rows="10" cols="50" >{{ request.form['options'] or data['options'] }}</textarea><br /><br /><br />
+    
+    <label>Stock:</label>
+    <input
+      type="number"
+      name="stock"
+      min="0"
+      value="{{ request.form['stock'] or data['stock'] }}"
+      required
+    /><br />
+    <input type="submit" value="Update Product" /><br />
+  </form>
+</div>
 {% endblock %}

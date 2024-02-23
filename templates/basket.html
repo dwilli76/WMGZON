@@ -1,33 +1,29 @@
 {% extends "layout.html" %} {% block title %}404 Page Not Found{% endblock %} {%
-block content %}
-
+block content %} {% set total = 0 %} {% for product in data %} {% set total =
+total + (product[4] * product[1]) %}
 <div class="basket-product">
   <div class="basket-product-image">
-    <img
-      src="https://business.ee.co.uk/content/dam/eeb-site/images-2023/devices/apple/phones/iphone-15/iphone-15-pro-max/natural-titanium/1-15promax-natural-titanium.png"
-    />
+    <img src="/static/assets/product_images/{{product[5]}}" />
   </div>
+
   <div class="basket-product-content">
-    <h2>Google</h2>
+    <h2>{{product[3]}}</h2>
     <br />
-    <h1>
-      Pixel Fold 5G 256GB + 12GB RAM, Factory Unlocked - Dual SIM (Nano-SIM +
-      eSIM) - Foldable...
-    </h1>
+    <h1>{{product[2]}}</h1>
     <br />
-    <p>Obsidian, 256GB + 12GB</p>
+    <p>Options</p>
     <br />
   </div>
   <div class="basket-product-buttons">
-    <h1>£1,449.00</h1>
-    <h1>QUANTITY</h1>
+    <h1>£{{ "%0.2f" | format(product[4] | float) }}</h1>
+    <h1>Quantity: {{product[1]}}</h1>
     <button>Remove</button>
   </div>
 </div>
-
+{% endfor %}
 <div class="basket-footer">
   <div class="basket-total">
-    <h1>Total: £1778</h1>
+    <h1>Total: {{total}}</h1>
     <p>Delivery & Service fees calculated at checkout</p>
   </div>
   <div class="basket-checkout">

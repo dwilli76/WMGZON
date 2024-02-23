@@ -1,0 +1,80 @@
+{% extends "layout.html" %} {% block title %}404 Page Not Found{% endblock %} {%
+block content %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div class="stats-container">
+  <h1>Stats</h1>
+  <h2>Number of products in each subcategory</h2>
+  <div class="stats-chart">
+    <canvas id="graph1"></canvas>
+  </div>
+  <h2>Stock level of each subcategory</h2>
+  <div class="stats-chart">
+    <canvas id="graph2"></canvas>
+  </div>
+  <h2>View detailed stock by subcategory:</h2>
+  {% for subcategory in graph1Labels %}
+  <a href="/categories/technology/stats/{{subcategory}}">{{subcategory}}</a>
+  {% endfor %}
+</div>
+
+<script>
+  const ctx = document.getElementById('graph1');
+
+  const graph1Labels = {{graph1Labels | tojson}};
+  const graph1Content = {{graph1Content | tojson}};
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: graph1Labels,
+      datasets: [
+        {
+          label: '# of Products',
+          data: graph1Content,
+          borderWidth: 1,
+          borderColor: '#ff9900',
+          backgroundColor: '#ffc369',
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+
+        },
+      },
+    },
+  });
+</script>
+
+<script>
+  const ctx2 = document.getElementById('graph2');
+
+  const graph2Labels = {{graph2Labels | tojson}};
+  const graph2Content = {{graph2Content | tojson}};
+
+  new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels: graph2Labels,
+      datasets: [
+        {
+          label: '# of stock',
+          data: graph2Content,
+          borderWidth: 1,
+          borderColor: '#ff9900',
+          backgroundColor: '#ffc369',
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+
+        },
+      },
+    },
+  });
+</script>
+
+{% endblock %}

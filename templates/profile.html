@@ -1,0 +1,49 @@
+{% extends "layout.html" %} {% block title %}Sign Up{% endblock %} {% block
+navbar %}{% endblock %} {% block content %}
+<div class="signup-frame">
+  <div class="signup-logo">
+    <a href="/"><img src="/static/assets/Logo.png" /></a>
+    <h1>Profile</h1>
+  </div>
+
+  <div class="signup-form">
+    <form method="POST" action="/profile">
+      <label for="forename">First Name: </label>
+      <input
+        type="text"
+        id="forename"
+        name="forename"
+        value="{{ request.form['forename'] or current_user.forename }}"
+      />
+      <label for="surname">Last Name: </label>
+      <input
+        type="text"
+        id="surname"
+        name="surname"
+        value="{{ request.form['surname'] or current_user.surname }}"
+      /><br />
+
+      <label for="email">Email: </label>
+      <input
+        type="text"
+        id="email"
+        name="email"
+        value="{{ request.form['email'] or current_user.email }}"
+      /><br />
+
+      <label for="phone">Phone: </label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        value="{{ request.form['phone'] or current_user.phone }}"
+      /><br />
+
+      <label for="pword">Password: </label>
+      <input type="password" id="pword" name="pword" /><br />
+
+      <input type="submit" value="Update" />
+    </form>
+  </div>
+</div>
+{% endblock %}
