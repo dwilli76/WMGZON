@@ -1,3 +1,4 @@
+/* ----------GENERAL----------*/
 body {
   background-color: #d3dae4;
   font-family: 'Hammersmith One', sans-serif;
@@ -43,6 +44,8 @@ button:hover {
   min-height: 100vh;
   position: relative;
 }
+
+/* ----------LAYOUT----------*/
 /* Navbar */
 .navbar {
   position: -webkit-sticky;
@@ -155,6 +158,16 @@ button:hover {
   opacity: 0.5;
 }
 
+/* Flashed messages */
+.flashes {
+  background-color: #ff9900;
+  width: 80%;
+  height: 50px;
+  border-radius: 10px;
+  margin: auto;
+  margin-top: 5px;
+}
+
 /* Footer */
 
 .footer {
@@ -236,7 +249,21 @@ button:hover {
   min-height: 100%;
 }
 
-/* Index page background shape */
+/* ----------404 PAGE---------- */
+.container-404 {
+  background-color: #ffffff;
+  width: 40%;
+  margin: auto;
+
+  text-align: center;
+}
+
+.container-404 img {
+  height: 500px;
+}
+
+/* ----------INDEX PAGE---------- */
+/* Background shape */
 .bg-shape {
   position: relative;
   overflow: hidden;
@@ -254,8 +281,8 @@ button:hover {
   top: 0;
   right: 0;
   z-index: -1;
-  top: 0px; /* change value as required */
-  right: 0px; /* change value as required */
+  top: 0px;
+  right: 0px;
 }
 
 /* Index welcome back section */
@@ -383,6 +410,7 @@ button:hover {
   opacity: 0.5;
 }
 
+/* ----------LOGIN PAGE---------- */
 /* Login Frame */
 .login-frame {
   width: 564px;
@@ -461,6 +489,7 @@ button:hover {
   text-decoration: underline;
 }
 
+/* ----------SIGNUP PAGE---------- */
 /* Signup Frame */
 .signup-frame {
   width: 1500px;
@@ -547,7 +576,7 @@ button:hover {
   text-decoration: underline;
 }
 
-/* Technology Homepage */
+/* ----------TECHNOLOGY HOME---------- */
 .technology-navbar {
   height: 40px;
   background-color: #9279b1;
@@ -601,7 +630,8 @@ button:hover {
 
   -webkit-mask: var(--mask);
   mask: var(--mask);
-  z-index: 1;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .technology-deals-frame-more {
@@ -621,7 +651,7 @@ button:hover {
 
 .technology-deals-tile {
   background-color: #d3dae4 !important;
-  width: 350px !important;
+  width: 320px !important;
   height: 370px !important;
   margin: 20px !important;
   border-radius: 10px !important;
@@ -632,7 +662,9 @@ button:hover {
 .technology-deals-tile img {
   height: 200px !important;
   width: 100% !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
+  background-color: #ffffff;
+  z-index: 90;
 }
 
 .technology-deals-tile h1 {
@@ -683,22 +715,87 @@ button:hover {
   display: inline-block !important;
 }
 
-/* Product Subcategory/Search page */
+/* ----------SUBCATEGORY/SEARCH PAGE---------- */
 .technology-subcategory-sidebar {
   height: 60%;
-  width: 300px;
+  width: 380px;
   position: fixed;
   left: 0;
   top: 0;
   padding: 10px;
   margin-top: 162px;
-
   z-index: 1;
+  display: inline-block;
+}
+
+.technology-subcategory-sidebar h1 {
+  font-weight: 700;
+}
+
+.technology-subcategory-sidebar h2 {
+  font-family: exo;
+  font-weight: 200;
+  font-size: 25px;
+  display: inline-block;
+}
+
+.sort-select {
+  width: 90%;
+
+  height: 51px;
+  position: relative;
+  float: left;
+}
+
+.sort-select::after {
+  --size: 10px;
+
+  position: absolute;
+  content: '';
+  right: 10px;
+  pointer-events: none;
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-top: var(--size) solid black;
+  top: 30%;
+}
+
+select {
+  appearance: none;
+  /* safari */
+  -webkit-appearance: none;
+  /* other styles for aesthetics */
+  width: 100%;
+  font-family: 'Hammersmith One', sans-serif;
+  font-size: 20px;
+  padding: 5px;
+  background-color: #fff;
+  border: 1px solid #caced1;
+  border-radius: 0.25rem;
+  color: #000;
+  cursor: pointer;
+}
+
+.technology-subcategory-sidebar input[type='number'] {
+  width: 120px;
+}
+
+.technology-subcategory-sidebar input[type='number'],
+p {
+  display: inline-block;
+  font-family: 'Hammersmith One', sans-serif;
+  font-size: 20px;
+  line-height: 25px;
+  height: 25px;
+  margin: none;
+  padding-left: 2px;
+  padding-right: 2px;
+  box-sizing: border-box;
 }
 
 .technology-subcategory-content {
   height: 100%;
-  margin-left: 320px;
+  margin-left: 400px;
   padding-bottom: 100px;
   background-color: #ffffff;
 }
@@ -716,7 +813,8 @@ button:hover {
 .technology-product-tile img {
   height: 230px;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: #ffffff;
 }
 .technology-product-tile h1 {
   font-size: 27px;
@@ -754,6 +852,8 @@ button:hover {
 
 .technology-product-tile p {
   word-wrap: pre-wrap;
+  padding: none;
+  margin: none;
 }
 
 .technology-product-tile a {
@@ -771,7 +871,7 @@ button:hover {
   display: inline-block;
 }
 
-/* Product Page */
+/* ----------PRODUCT PAGE---------- */
 .product-container {
   height: 90%;
   margin: 50px 50px 100px 50px;
@@ -833,10 +933,12 @@ button:hover {
   grid-column-end: 2;
   margin-top: 20px;
   text-align: center;
+  width: 500px;
 }
 
 .product-images img {
-  width: 500px;
+  max-width: 500px;
+  max-height: 500px;
   border: solid 0.5px #eeeeee;
   margin: 10px;
 }
@@ -921,8 +1023,7 @@ button:hover {
   margin: 0 5px 0 0;
 
   position: relative;
-
-  width: 205px;
+  width: 305px;
   height: 62px;
   background-color: white;
 }

@@ -1,7 +1,9 @@
 {% extends "layout.html" %} {% block title %}404 Page Not Found{% endblock %} {%
 block content %}
-<div style="height: 500px; margin: auto; text-align: center">
-  <h1>Error 404: Page Not Found</h1>
+<div class="container-404">
+  <h1>Error 404</h1>
+  <h3>We searched for that page but all we found was this kitten</h3>
+  <img src="/static/assets/404/kitten{{ range(1, 5) | random }}.png" /><br />
   <button onclick="history.back()">Go Back</button>
 </div>
 

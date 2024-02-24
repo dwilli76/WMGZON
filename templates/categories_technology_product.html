@@ -70,7 +70,7 @@ endblock %} {% block content %}
       {% else %}
       <div class="product-options-item">
         <li>
-          <input type="radio" id="{{item}}" name="{{currentOption.value}}" required/>
+          <input type="radio" id="{{item}}" name="option_{{currentOption.value}}" value="{{item}}" required/>
           <label for="{{item}}">{{item}}</label>
         </li>
         

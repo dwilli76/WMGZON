@@ -45,12 +45,12 @@ endblock %} {% block content %}
       value="{{ request.form['subcategory'] or data['subcategory'] }}"
       required
     >
-      <option value="camera_&_photo" {% if data['subcategory']=="Camera & Photo" %} selected="selected" {% endif %}>Camera & Photo</option>
-      <option value="tv_&_home_cinema" {% if data['subcategory']=="TV & Home Cinema" %} selected="selected" {% endif %}>TV & Home Cinema</option>
-      <option value="laptops" {% if data['subcategory']=="Laptops" %} selected="selected" {% endif %}>Laptops</option>
-      <option value="phones" {% if data['subcategory']=="Phones" %} selected="selected" {% endif %}>Phones</option>
-      <option value="audio_&_hifi" {% if data['subcategory']=="Audio & HiFi" %} selected="selected" {% endif %}>Audio & HiFi</option>
-      <option value="accessories" {% if data['subcategory']=="Accessories" %} selected="selected" {% endif %}>Accessories</option></select
+      <option value="camera_&_photo" {% if data['subcategory']=="camera_&_photo" %} selected="selected" {% endif %}>Camera & Photo</option>
+      <option value="tv_&_home_cinema" {% if data['subcategory']=="tv_&_home_cinema" %} selected="selected" {% endif %}>TV & Home Cinema</option>
+      <option value="laptops" {% if data['subcategory']=="laptops" %} selected="selected" {% endif %}>Laptops</option>
+      <option value="phones" {% if data['subcategory']=="phones" %} selected="selected" {% endif %}>Phones</option>
+      <option value="audio_&_hifi" {% if data['subcategory']=="audio_&_hifi" %} selected="selected" {% endif %}>Audio & HiFi</option>
+      <option value="accessories" {% if data['subcategory']=="accessories" %} selected="selected" {% endif %}>Accessories</option></select
     ><br />
     <label>Preview:</label>
     <textarea name="preview" rows="10" cols="50" required>{{ request.form['preview'] or data['preview'] }}</textarea>
