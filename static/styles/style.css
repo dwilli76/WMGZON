@@ -713,6 +713,7 @@ button:hover {
   text-decoration: none !important;
   color: #000000 !important;
   display: inline-block !important;
+  pointer-events: all;
 }
 
 /* ----------SUBCATEGORY/SEARCH PAGE---------- */

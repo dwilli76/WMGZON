@@ -1,4 +1,4 @@
-from flask import Flask, flash, render_template, request, abort, redirect, url_for
+from flask import Flask, render_template, flash, request, abort, redirect, url_for
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -18,7 +18,6 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite"
 
 # Initialize flask-sqlalchemy extension for the user database
 userDB = SQLAlchemy()
-
 
 # Setup login manager to handle logging in/out users
 login_manager = LoginManager()
@@ -66,12 +65,16 @@ with app.app_context():
 connectInvDb = sqlite3.connect('inventory_database.db')
 # If the products table doesn't exist then create
 connectInvDb.execute(
-    'CREATE TABLE IF NOT EXISTS TECHNOLOGY_PRODUCTS (id INTEGER PRIMARY KEY NOT NULL, name TEXT, brand TEXT, original_price REAL, current_price REAL, stock INT, subcategory TEXT, preview BLOB, description BLOB, specs BLOB, options BLOB, image_name TEXT)')
+    'CREATE TABLE IF NOT EXISTS TECHNOLOGY_PRODUCTS \
+    (id INTEGER PRIMARY KEY NOT NULL, name TEXT, brand TEXT, original_price REAL, current_price REAL, \
+    stock INT, subcategory TEXT, preview BLOB, description BLOB, specs BLOB, options BLOB, image_name TEXT)')
 # Drop any existing stored basket information then re-create the basket table
 connectInvDb.execute(
-   'DROP TABLE technology_basket')
+    'DROP TABLE technology_basket')
 connectInvDb.execute(
-    'CREATE TABLE IF NOT EXISTS TECHNOLOGY_BASKET (id INTEGER PRIMARY KEY NOT NULL, productID INTEGER NOT NULL, quantity INTEGER NOT NULL, options STRING, FOREIGN KEY(productID) REFERENCES technology_products(id) )')
+    'CREATE TABLE IF NOT EXISTS TECHNOLOGY_BASKET \
+    (id INTEGER PRIMARY KEY NOT NULL, productID INTEGER NOT NULL, quantity INTEGER NOT NULL, \
+    options STRING, FOREIGN KEY(productID) REFERENCES technology_products(id) )')
 connectInvDb.close()
 
 # Function to return a connection to the inventory database
@@ -304,7 +307,7 @@ def search():
 
         # Uses a function to query the database and return the results
         data = get_search_results(category, search_text)
-        # Render the results using the browse subcategory template
+        # Render the results using the search template
         return render_template('search.html', data=data)
     else:
         # If a user navigates to '/search' then redirect them to home
@@ -348,11 +351,14 @@ def categories_technology_subcategory(subcategory):
 
     # Get an SQL query based on the sort selected
     if filters[0] == "popular":
-        db_query = "SELECT * FROM TECHNOLOGY_PRODUCTS WHERE subcategory=? AND current_price>? AND current_price<? AND stock >=? ORDER BY stock DESC"
+        db_query = "SELECT * FROM TECHNOLOGY_PRODUCTS WHERE \
+            subcategory=? AND current_price>? AND current_price<? AND stock >=? ORDER BY stock DESC"
     elif filters[0] == "price_low_high":
-        db_query = "SELECT * FROM TECHNOLOGY_PRODUCTS WHERE subcategory=? AND current_price>? AND current_price<? AND stock >=? ORDER BY current_price ASC"
+        db_query = "SELECT * FROM TECHNOLOGY_PRODUCTS WHERE \
+            subcategory=? AND current_price>? AND current_price<? AND stock >=? ORDER BY current_price ASC"
     elif filters[0] == "price_high_low":
-        db_query = "SELECT * FROM TECHNOLOGY_PRODUCTS WHERE subcategory=? AND current_price>? AND current_price<? AND stock >=? ORDER BY current_price DESC"
+        db_query = "SELECT * FROM TECHNOLOGY_PRODUCTS WHERE \
+            subcategory=? AND current_price>? AND current_price<? AND stock >=? ORDER BY current_price DESC"
 
     # Execute the query and fetch all results
     database = get_inventory_database()

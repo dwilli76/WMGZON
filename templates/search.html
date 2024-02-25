@@ -14,29 +14,29 @@
     
     
     
-    <div class="technology-subcategory-content">
-        
-        {% for product in data%}
-      <div class="technology-product-tile">
-        <img src="/static/assets/product_images/{{product[11]}}" />
-        <h2>{{product[2]}}</h2>
-        <h1>{{product[1]}}</h1>
-        <p><ul>
-            {% set preview = product[7].split('\n') %}
-            {% for item in preview %}
-            <li>{{item}}</li>
-            {% endfor %}
-          </ul></p>
-        {% if product[3] == product[4] %}
-          <h4>-</h4>
-          <h3>£{{ "%0.2f" | format(product[4] | float) }}</h3>
-        {% else %}
-          <h4>£{{ "%0.2f" | format(product[3] | float) }}</h4>
-          <h3>£{{ "%0.2f" | format(product[4] | float) }}</h3>
-        {% endif %}
-        <a href="/categories/technology/product/{{product[0]}}">Explore >></a>
-      </div>
-    
+    <div class="technology-subcategory-content"> 
+      {% for product in data%}
+        <div class="technology-product-tile">
+          <img src="/static/assets/product_images/{{product[11]}}" />
+          <h2>{{product[2]}}</h2>
+          <h1>{{product[1]}}</h1>
+          <p>
+            <ul>
+              {% set preview = product[7].split('\n') %}
+              {% for item in preview %}
+                <li>{{item}}</li>
+              {% endfor %}
+            </ul>
+          </p>
+          {% if product[3] == product[4] %}
+            <h4>-</h4>
+            <h3>£{{ "%0.2f" | format(product[4] | float) }}</h3>
+          {% else %}
+            <h4>£{{ "%0.2f" | format(product[3] | float) }}</h4>
+            <h3>£{{ "%0.2f" | format(product[4] | float) }}</h3>
+          {% endif %}
+          <a href="/categories/technology/product/{{product[0]}}">Explore >></a>
+        </div>
       {% endfor %}
     </div>
     

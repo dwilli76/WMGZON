@@ -84,8 +84,12 @@ endblock %} {% block content %}
 
   <div class="product-description">
     <h1>Description</h1>
-    <p>{{data[8][:800]}}<span id="dots">...</span><span id="more">{{data[8][800:]}}</span></span></p>
-    <button onclick="myFunction()" id="myBtn">Read More >></button>
+    {% if data[8]|length > 800 %}
+      <p>{{data[8][:800]}}<span id="dots">...</span><span id="more">{{data[8][800:]}}</span></span></p>
+      <button onclick="myFunction()" id="myBtn">Read More >></button>
+      {% else %}
+      <p>{{data[8]}}</p>
+    {% endif %}
   </div>
 
   <script>

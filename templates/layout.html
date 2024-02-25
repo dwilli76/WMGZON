@@ -5,14 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <link
-      href="{{url_for('static', filename='styles/custom.css')}}"
-      rel="stylesheet"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  
+      
     <link
       href="http://fonts.googleapis.com/css?family=Exo|Hammersmith+One"
       rel="stylesheet"
@@ -39,59 +32,64 @@
   <body>
     <div class="whole_container">
       {% block navbar %}
-      <div class="navbar">
-        <div class="logo">
-          <a href="/"><img src="/static/assets/Logo.png" /></a>
-        </div>
-        <form method="POST" action="/search">
-          <div class="search-bar">
-            <div class="category-select" style="width: 20%">
-              <select name="category">
-                <option value="any_category">Any Category</option>
-                <option value="groceries">Groceries</option>
-                <option value="technology">Technology</option>
-                <option value="automotive">Automotive</option>
-                <option value="clothing">Clothing</option>
-                <option value="books">Books</option>
-                <option value="sports_outdoors">Sport & Outdoors</option>
-              </select>
-            </div>
-            <div class="search-text-box">
-              <input type="text" name="search_text" placeholder="Search.." required/>
-            </div>
-
-            <button class="search-submit" type="submit"><i class="fa fa-search"></i></button>
+        <div class="navbar">
+          <div class="logo">
+            <a href="/"><img src="/static/assets/Logo.png" /></a>
           </div>
-        </form>
+          <form method="POST" action="/search">
+            <div class="search-bar">
+              <div class="category-select" style="width: 20%">
+                <select name="category">
+                  <option value="any_category">Any Category</option>
+                  <option value="groceries">Groceries</option>
+                  <option value="technology">Technology</option>
+                  <option value="automotive">Automotive</option>
+                  <option value="clothing">Clothing</option>
+                  <option value="books">Books</option>
+                  <option value="sports_outdoors">Sport & Outdoors</option>
+                </select>
+              </div>
+              <div class="search-text-box">
+                <input type="text" name="search_text" placeholder="Search.." required/>
+              </div>
 
-        <div class="nav-links">
-          {% if current_user.is_authenticated %}
-          <a href="/profile"><img src="/static/assets/navbar_profile.png" /></a>
-          <a href="/logout"><img src="/static/assets/navbar_logout.png" /></a>
-          {% if current_user.type == "admin" %}
-          <a href="/categories/technology/manage"><img src="/static/assets/navbar_manage.png" /></a>
-          {% else %}
-          <a href="/basket"><img src="/static/assets/navbar_basket.png" /></a>
-          {% endif %}
-          {% else %}
-          <a href="/login"><img src="/static/assets/navbar_login.png" /></a>
-          <a href="/basket"><img src="/static/assets/navbar_basket.png" /></a>
-          {% endif %}
-          
-          
-          
+              <button class="search-submit" type="submit"><i class="fa fa-search"></i></button>
+            </div>
+          </form>
+
+          <div class="nav-links">
+            {% if current_user.is_authenticated %}
+            <a href="/profile"><img src="/static/assets/navbar_profile.png" /></a>
+            <a href="/logout"><img src="/static/assets/navbar_logout.png" /></a>
+            {% if current_user.type == "admin" %}
+            <a href="/categories/technology/manage"><img src="/static/assets/navbar_manage.png" /></a>
+            {% else %}
+            <a href="/basket"><img src="/static/assets/navbar_basket.png" /></a>
+            {% endif %}
+            {% else %}
+            <a href="/login"><img src="/static/assets/navbar_login.png" /></a>
+            <a href="/basket"><img src="/static/assets/navbar_basket.png" /></a>
+            {% endif %}
+            
+            
+            
+          </div>
         </div>
-      </div>
-      {% endblock %} {% with messages = get_flashed_messages() %} {% if messages
-      %}
-      <ul class="flashes">
-        {% for message in messages %}
-        <div class="alert alert-primary" role="alert">{{ message }}</li>
-        {% endfor %}
-      </ul>
-      {% endif %} {% endwith %}
+      {% endblock %}
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class="flashes">
+            {% for message in messages %}
+            <div class="alert alert-primary" role="alert">{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
 
-      <div class="content">{% block content %}{% endblock %}</div>
+      <div class="content">
+        {% block content %}
+        {% endblock %}
+      </div>
       
       {% block footer %}
       <div class="footer">
@@ -122,6 +120,5 @@
       </div>
       {% endblock %}
     </div>
-
   </body>
 </html>
