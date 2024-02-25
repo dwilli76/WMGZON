@@ -1,9 +1,10 @@
-
 Todo:
-  + Add stay logged in functionality
-  + Fix filtering/sorting functionality
-  + Add basket functionality
-  - Add wishlist functionality
-  + Finish making stuff pretty
-  + Add stats for admin
-  - Add a bunch of products
+  - Add more products
+  - Report
+    - Database design section (class diagrams)
+    - Docker
+    - GIT commit dates
+    + Unmet requirements
+    + Conclusion
+    - Figures/Tables/References
+    - Word Count
