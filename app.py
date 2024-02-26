@@ -164,7 +164,7 @@ def login():
             else:
                 # Return error message & reload page
                 flash('Incorrect password','error')
-                return redirect(url_for("login"), code=400)
+                return redirect(url_for("login"))
 
         # Attempt to get matching user by phone
         user = Users.query.filter_by(
@@ -180,11 +180,11 @@ def login():
             else:
                 # Return error message & reload page
                 flash('Incorrect password','error')
-                return redirect(url_for("login"), code=400)
+                return redirect(url_for("login"))
             
         # If no user found, return error & reload page
         flash('Incorrect email/phone number','error')
-        return redirect(url_for("login"), code=400)
+        return redirect(url_for("login"))
     else:
         return render_template('login.html')
     
@@ -311,7 +311,7 @@ def search():
         return render_template('search.html', data=data)
     else:
         # If a user navigates to '/search' then redirect them to home
-        return redirect(url_for('home'), code=400)
+        return redirect(url_for('home'))
 
 # Define the technology homepage route
 @app.route('/categories/technology/')
@@ -426,7 +426,7 @@ def categories_technology_add():
         
         # Display confirmation message and redirect to the technology manage page
         flash('Product added!')
-        return redirect(url_for('categories_techology_manage'), code=200)
+        return redirect(url_for('categories_techology_manage'))
     else:
         return render_template('categories_technology_add.html')
 
@@ -437,7 +437,7 @@ def categories_techology_manage():
     # Check user has admin privelages, if not redirect to 'home' with error
     if not current_user.type == 'admin':
         flash('You do not have access to view this page')
-        return redirect(url_for('home'), code=400)
+        return redirect(url_for('home'))
 
     # Get connection to the database & fetch all products
     database = get_inventory_database()
@@ -499,7 +499,7 @@ def categories_techology_manage_id(id):
 
         # Diaplay a confirmation message and reload the page
         flash('Product updated!')
-        return redirect(url_for('categories_techology_manage_id', id=id, code=200))
+        return redirect(url_for('categories_techology_manage_id', id=id))
 
     # Return product data in manage product template
     return render_template("categories_technology_manage_id.html", data = product)
@@ -531,7 +531,7 @@ def categories_techology_manage_delete_id(id):
 
     # Alert the user and redirect to the manage products page
     flash('"{}" was deleted!'.format(product['name']))
-    return redirect(url_for('categories_techology_manage'), code=200)
+    return redirect(url_for('categories_techology_manage'))
 
 # Define the technology stats route
 @app.route('/categories/technology/stats/')

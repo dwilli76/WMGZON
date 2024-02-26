@@ -1,6 +1,5 @@
-{% extends "layout.html" %} {% block title %}404 Page Not Found{% endblock %} {%
-block content %} {% set total = 0 %} {% for product in data %} {% set total =
-total + (product[4] * product[1]) %}
+{% extends "layout.html" %} {% block title %}Basket{% endblock %} {% block
+content %} {% set total = 0 %} {% for product in data %}
 <div class="basket-product">
   <div class="basket-product-image">
     <img src="/static/assets/product_images/{{product[5]}}" />
@@ -23,7 +22,7 @@ total + (product[4] * product[1]) %}
 {% endfor %}
 <div class="basket-footer">
   <div class="basket-total">
-    <h1>Total: {{total}}</h1>
+    <h1>Total: £{{"%0.2f" | format(data | sum(attribute='current_price'))}}</h1>
     <p>Delivery & Service fees calculated at checkout</p>
   </div>
   <div class="basket-checkout">

@@ -938,7 +938,7 @@ p {
 }
 
 .product-images img {
-  max-width: 500px;
+  max-width: 480px;
   max-height: 500px;
   border: solid 0.5px #eeeeee;
   margin: 10px;
